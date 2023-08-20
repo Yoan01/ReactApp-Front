@@ -16,7 +16,7 @@ export const Navbar = ({ bgColor }: { bgColor: string }) => {
   return (
     <>
       <nav
-        className={`px-10 py-6 ${bgColor} fixed w-full flex items-center justify-between`}
+        className={`px-10 py-6 ${bgColor} fixed w-full flex items-center justify-between z-50`}
       >
         <div className='flex gap-8 items-center'>
           <div
@@ -34,14 +34,14 @@ export const Navbar = ({ bgColor }: { bgColor: string }) => {
         <div className='flex gap-4'>
           <Link
             href={"/login"}
-            className='bg-white rounded-full font-bold py-3 px-4 hover:bg-[#cccccc] flex items-center gap-2'
+            className='bg-white rounded-full font-bold py-3 px-4 hover:bg-[#cccccc] flex items-center gap-2 shadow-nav'
           >
             <PersonIcon />
             <button>Connexion</button>
           </Link>
           <Link
             href={"/sign"}
-            className='bg-black text-white font-bold rounded-full py-3 px-4 hover:bg-[#333333]'
+            className='bg-black text-white font-bold rounded-full py-3 px-4 hover:bg-[#333333] shadow-nav'
           >
             <button>Inscription</button>
           </Link>
