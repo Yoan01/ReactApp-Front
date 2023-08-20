@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles/globals.css */
+@font-face {
+  font-family: "Uber";
+  src: url("../fonts/UberMoveMedium.otf") format("opentype");
+  /* Autres propriétés de la police comme font-weight, font-style si nécessaire */
+}
+
+body {
+  font-family: "Uber", sans-serif;
+  font-size: large;
+}
