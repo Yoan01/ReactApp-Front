@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { Navbar } from "./components/Navbar"
-import styles from "./Navbar.module.css"
+import styles from "./Homepage.module.css"
 import Link from "next/link"
 import MenuItem from "@mui/material/MenuItem"
 import WatchLaterRoundedIcon from "@mui/icons-material/WatchLaterRounded"
@@ -142,7 +142,7 @@ const Page = () => {
       </div>
       <div className='flex flex-col px-10 pt-24'>
         <span className='text-4xl font-bold'>Villes à proximité</span>
-        <div className='p-20 w-96 h-72'>
+        <div className='py-8 '>
           <Map />
         </div>
       </div>
