@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import 'leaflet/dist/leaflet.css'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer } from 'react-leaflet'
 import { Icon } from 'leaflet'
 import { useRouter } from 'next/navigation'
 
@@ -146,7 +146,7 @@ const Map = () => {
           )
         })}
       </MapContainer>
-      <div className="grid grid-cols-4 gap-5 pt-8">
+      <div className="grid grid-rows-6 grid-flow-col gap-5 pt-8">
         {geoDataMarkers.map((markerName) => {
           return (
             <span className="text-base" key={markerName.id}>

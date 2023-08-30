@@ -10,6 +10,7 @@ import FmdGoodRoundedIcon from '@mui/icons-material/FmdGoodRounded'
 import { InputAdornment, Select, TextField } from '@mui/material'
 import Article from './components/Article'
 import Map from './components/Map'
+import Footer from './components/Footer'
 
 const Page = () => {
   const [dataArticles, setDataArticles] = useState([
@@ -121,7 +122,6 @@ const Page = () => {
                     padding: '8px 16px',
                     width: '540px',
                     height: '56px',
-                    color: 'black',
                   },
                 }}
                 variant="standard"
@@ -159,7 +159,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="flex px-10 gap-6 justify-center pt-20">
+      <div className="flex px-10 gap-20 justify-center pt-20">
         {dataArticles.map((article) => {
           return (
             <Article
@@ -185,7 +185,7 @@ const Page = () => {
             Tous les pays
           </Link>
         </div>
-        <div className="grid grid-cols-4 gap-5 pt-8">
+        <div className="grid grid-rows-[repeat(8,1fr)] grid-flow-col gap-5 pt-8">
           {countries.map((country) => {
             return (
               <span className="text-base" key={country}>
@@ -194,7 +194,15 @@ const Page = () => {
             )
           })}
         </div>
+        <span className="flex justify-center p-3">
+          Découvrez comment Uber Eats référence et classe les offres des
+          partenaires.
+          <Link href={'/more'} className="underline">
+            En savoir plus
+          </Link>
+        </span>
       </div>
+      <Footer />
     </>
   )
 }
