@@ -11,31 +11,44 @@ import { InputAdornment, Select, TextField } from '@mui/material'
 import Article from './components/Article'
 import Map from './components/Map'
 import Footer from './components/Footer'
+import ApiGetCountries from './api/homepage/countries'
+import ApiGetArticles from './api/homepage/articles'
+
+interface country {
+  id: number
+  name: string
+}
+
+interface article {
+  id: number
+  img: string
+  title: string
+  link: string
+  text: string
+}
 
 const Page = () => {
-  const [dataArticles, setDataArticles] = useState([
-    {
-      id: 1,
-      img: '/pro.png',
-      tile: 'Aidez vos collaborateurs à se restaurer',
-      link: '/pro',
-      text: 'Créez un compte professionnel',
-    },
-    {
-      id: 2,
-      img: '/restaurant.png',
-      tile: 'Les plats de vos restaurants préférés, livrés chez vous',
-      link: '/restaurant',
-      text: 'Ajoutez votre restaurant',
-    },
-    {
-      id: 3,
-      img: '/partenaire.png',
-      tile: 'Livrez avec Uber Eats',
-      link: '/partenaire',
-      text: 'Devenez coursier-partenaire',
-    },
-  ])
+  const [articles, setArticles] = useState<article[] | null>(null)
+
+  useEffect(() => {
+    // Utilisez useEffect pour appeler la fonction handleApiRequest lors du chargement de la page
+    async function fetchData() {
+      try {
+        const responseData = await ApiGetArticles()
+        if (responseData !== undefined) {
+          setArticles(responseData) // Mettez à jour l'état avec les données récupérées
+        }
+      } catch (error) {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des données :",
+          error
+        )
+      }
+    }
+
+    fetchData()
+  }, [])
+
   const [bgColor, setBgColor] = useState('bg-transparent')
   const [optionSelected, setOptionSelected] = useState('Livrer maintenant')
   const [address, setAddress] = useState('')
@@ -65,37 +78,25 @@ const Page = () => {
     setAddress(event.target.value)
   }
 
-  const [countries, setCountries] = useState([
-    'Afrique du Sud',
-    'Allemagne',
-    'Australie',
-    'Belgique',
-    'Canada',
-    'Chili',
-    'Costa Rica',
-    'Équateur',
-    'Espagne',
-    'États-Unis',
-    'France',
-    'Guatemala',
-    'Irlande',
-    'Italie',
-    'Japon',
-    'Kenya',
-    'Mexique',
-    'Nouvelle-Zélande',
-    'Panama',
-    'Pays-Bas',
-    'Pologne',
-    'Portugal',
-    'République dominicaine',
-    'Royaume-Uni',
-    'Salvador',
-    'Sri Lanka',
-    'Suède',
-    'Suisse',
-    'Taiwan',
-  ])
+  const [countries, setCountries] = useState<country[] | null>(null)
+  useEffect(() => {
+    // Utilisez useEffect pour appeler la fonction handleApiRequest lors du chargement de la page
+    async function fetchData() {
+      try {
+        const responseData = await ApiGetCountries()
+        if (responseData !== undefined) {
+          setCountries(responseData) // Mettez à jour l'état avec les données récupérées
+        }
+      } catch (error) {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des données :",
+          error
+        )
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <>
@@ -160,12 +161,12 @@ const Page = () => {
         </div>
       </div>
       <div className="flex px-10 gap-20 justify-center pt-20">
-        {dataArticles.map((article) => {
+        {articles?.map((article) => {
           return (
             <Article
               key={article.id}
               img={article.img}
-              title={article.tile}
+              title={article.title}
               link={article.link}
               text={article.text}
             />
@@ -186,10 +187,10 @@ const Page = () => {
           </Link>
         </div>
         <div className="grid grid-rows-[repeat(8,1fr)] grid-flow-col gap-5 pt-8">
-          {countries.map((country) => {
+          {countries?.map((country) => {
             return (
-              <span className="text-base" key={country}>
-                {country}
+              <span className="text-base" key={country.id}>
+                {country.name}
               </span>
             )
           })}

@@ -25,6 +25,12 @@
       "@mui/icons-material/*": ["../node_modules/@mui/icons-material/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/api/hello.tjs"
+  ],
   "exclude": ["node_modules"]
 }
